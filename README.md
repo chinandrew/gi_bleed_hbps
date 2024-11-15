@@ -24,7 +24,9 @@ with the following arguments:
 - `$params`: `1`,`2`,or `3` depending on number of parameters to save. `1` saves the coefficients, global scale, and local scales. `2` adds the log densities. `3` saves everything.
 - `$init`: `1` or `0`. `1` Initializes samples at the provided location. Otherwise defaults to bayesbridge alternative.
 - `$dt`: Travel time or base step size if using NUTS. Not needed for Polya-Gamma.
-- `$unit_v`: Whether or not to use unit velocities.
+- `$unit_v`: `1` to use unit velocities or `0` to use normally distributed. Was set to `0` for simulations.
 - `$rr`: Refresh rate for BPS.
+
+An example settings use for the best BPS run would be `sampler=bps,n=10000,seed=1,thin=1,params=1,init=1,dt=1.5,unit_v=0,rr=0.01`.
 
 This will create the output as a pickled file with name `f"{hostname}_{sampler}_gi_{n}_seed{seed}_thin{thin}_params{params_int}_init{bool(init_int)}"` plus additional information on `dt`, `unit_v`, and `rr` depending on the sampler in the current directory, with `hostname` derived from your machine's name.
