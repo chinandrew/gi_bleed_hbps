@@ -4,10 +4,10 @@ import sys
 
 from bayesbridge import BayesBridge, RegressionModel, RegressionCoefPrior
 
-with open("/users/achin/bayes-bridge/simulation/compute-124_cholesky_gi_4000_seed1_thin1_params1_initFalse.p", "rb") as f:
+with open("simulation/init.p", "rb") as f:
     initial = pickle.load(f)[0]['coef'][:, -1]
 
-with open("/users/achin/bayes-bridge/simulation/gi_bleed_Xy.p", "rb") as f:
+with open("simulation/gi_bleed_Xy.p", "rb") as f:
     X, y = pickle.load(f)
 
 model = RegressionModel(
@@ -63,7 +63,7 @@ mcmc_output = bridge.gibbs(
     coef_sampler_type=sampler,
     seed=seed, dt=dt, rr=rr, unit_v=unit_v)
 
-filename = f"/users/achin/hbps/gi_bleed_sim2/{hostname}_{sampler}_gi_{n}_seed{seed}_thin{thin}_params{params_int}_init{bool(init_int)}"
+filename = f"{hostname}_{sampler}_gi_{n}_seed{seed}_thin{thin}_params{params_int}_init{bool(init_int)}"
 
 if sampler == "bps":
     filename += f"_dt{str(dt).replace('.', '-')}_unit_v-{unit_v}_rr{str(rr).replace('.', '-')}.p"
