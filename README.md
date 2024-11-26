@@ -9,7 +9,8 @@ This code is a fork of the [BayesBridge](https://github.com/OHDSI/bayes-bridge) 
 
 ## Running BayesBridge
 ### Set data and initial position
-1. Place data as a pickled (matrix, vector) tuple in `simulation/gi_bleed_Xy.p`.
+1. Place data as a pickled (matrix, vector) tuple of (design matrix, response) in `simulation/gi_bleed_Xy.p`.
+	- The data used in the paper are extracted from the proprietary HIPAA-compliant Merative MarketScan Research Databases. Our data extraction tool and cohort definitions are openly available online at https://github.com/aki-nishimura/anticoagulant-study-cohorts; they can be used to extract the same data sets by any researchers who have purchased a license to the Merative databases.
 2. If desired, put an initial location in `simulation/init.p`. This should be in the form of a pickled output from a previous run. Alternativley, this can be a tuple containin a dict with a `"coef"` key leading to an array of the initial state, e.g. `({'coef': np.random.normal(size=(p,1))},)`.
 
 ### Run sampler
